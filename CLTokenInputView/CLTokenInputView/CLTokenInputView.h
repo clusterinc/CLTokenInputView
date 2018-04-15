@@ -109,6 +109,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)beginEditing;
 - (void)endEditing;
 
+- (BOOL)isTokenViewTextFieldFirstResponder;
+- (BOOL)tokenViewTextFieldCanBecomeFirstResponder;
+- (BOOL)tokenViewTextFieldBecomeFirstResponder;
+
 @end
 
 NS_ASSUME_NONNULL_END

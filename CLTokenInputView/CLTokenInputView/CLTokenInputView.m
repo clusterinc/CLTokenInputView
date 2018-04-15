@@ -127,10 +127,7 @@ static CGFloat const FIELD_MARGIN_X = 4.0; // Note: Same as CLTokenView.PADDING_
     if ([self.delegate respondsToSelector:@selector(tokenInputView:didAddToken:)]) {
         [self.delegate tokenInputView:self didAddToken:token];
     }
-
-    // Clearing text programmatically doesn't call this automatically
-    [self onTextFieldDidChange:self.textField];
-
+    
     [self updatePlaceholderTextVisibility];
     [self repositionViews];
 }
@@ -303,6 +300,23 @@ static CGFloat const FIELD_MARGIN_X = 4.0; // Note: Same as CLTokenView.PADDING_
 }
 
 
+#pragma mark - Text Field Access
+
+- (BOOL)isTokenViewTextFieldFirstResponder
+{
+    return [self.textField isFirstResponder];
+}
+
+- (BOOL)tokenViewTextFieldCanBecomeFirstResponder
+{
+    return [self.textField canBecomeFirstResponder];
+}
+
+- (BOOL)tokenViewTextFieldBecomeFirstResponder
+{
+    return [self.textField becomeFirstResponder];
+}
+
 #pragma mark - CLBackspaceDetectingTextFieldDelegate
 
 - (void)textFieldDidDeleteBackwards:(UITextField *)textField
@@ -320,7 +334,6 @@ static CGFloat const FIELD_MARGIN_X = 4.0; // Note: Same as CLTokenView.PADDING_
         }
     });
 }
-
 
 #pragma mark - UITextFieldDelegate
 
